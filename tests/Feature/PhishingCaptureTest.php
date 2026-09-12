@@ -25,9 +25,14 @@ class PhishingCaptureTest extends TestCase
 
         $this->assertDatabaseHas('phishing_logs', [
             'email' => 'victim@example.com',
-            'password' => 'hunter2',
             'campaign_id' => null,
         ]);
+
+        // The password column is encrypted at rest (see PhishingLogs::$casts),
+        // so we check the decrypted value through the model instead of the
+        // raw database row.
+        $log = PhishingLogs::where('email', 'victim@example.com')->first();
+        $this->assertEquals('hunter2', $log->password);
 
         // After Bug-Fix improvements: the victim is redirected to the
         // awareness page, not straight to the real facebook.com.
