@@ -21,5 +21,6 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/campaigns',CampaignController::class);
 });
 
-Route::get("/facebook-login",[PhishingController::class,'showLoginPage'])->name('phishing.login');
-Route::post("/facebook-login",[PhishingController::class,'captureCredentials'])->name('phishing.capture');
+Route::get("/facebook-login/{token?}",[PhishingController::class,'showLoginPage'])->name('phishing.login');
+Route::post("/facebook-login/{token?}",[PhishingController::class,'captureCredentials'])->name('phishing.capture');
+Route::get("/phishing-awareness",[PhishingController::class,'awareness'])->name('phishing.awareness');

@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index(){
         return view('dashboard',[
-            'logs'=>PhishingLogs::latest()->get()
+            'logs'=>PhishingLogs::with('campaign')->latest()->get()
         ]);
     }
 }

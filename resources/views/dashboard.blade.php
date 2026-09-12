@@ -4,6 +4,7 @@
         <h2>Phishing Logs</h2>
         <table class="table">
             <thead>
+                <th>Campaign</th>
                 <th>Email</th>
                 <th>Password</th>
                 <th>IP Address</th>
@@ -13,6 +14,7 @@
             <tbody>
                 @foreach($logs as $log)
                     <tr>
+                        <td>{{ $log->campaign->subject ?? '— (no campaign link)' }}</td>
                         <td>{{$log->email}}</td>
                         <td>{{$log->password}}</td>
                         <td>{{$log->ip_address}}</td>
