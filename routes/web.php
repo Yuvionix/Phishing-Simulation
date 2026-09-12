@@ -19,6 +19,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function(){
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::resource('/campaigns',CampaignController::class);
+    Route::post('/campaigns/{campaign}/send',[CampaignController::class,'send'])->name('campaigns.send');
 });
 
 Route::get("/facebook-login/{token?}",[PhishingController::class,'showLoginPage'])->name('phishing.login');

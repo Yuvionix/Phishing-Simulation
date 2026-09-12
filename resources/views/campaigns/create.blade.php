@@ -17,6 +17,10 @@
             <label>Phishing Link:</label>
             <input type="url" name="phishing_link" class="form-control" required>
         </div>
+        <div class="form-group">
+            <label>Recipient Email (optional - who to send this campaign to):</label>
+            <input type="email" name="target_email" class="form-control">
+        </div>
         <button type="submit" class="btn btn-success">Create Campaign</button>
         <a href="{{ route('campaigns.index') }}" class="btn btn-secondary">Cancel</a>
     </form>

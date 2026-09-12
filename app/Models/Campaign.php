@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Campaign extends Model
 {
-    protected $fillable = ["subject","email_body","phishing_link","token"];
+    protected $fillable = ["subject","email_body","phishing_link","token","target_email"];
 
     /**
      * The credentials that were captured through this campaign's tracking link.

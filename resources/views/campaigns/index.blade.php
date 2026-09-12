@@ -2,6 +2,14 @@
 @section('content')
 <div class="container">
     <h2>Phishing Campaigns</h2>
+
+    @if (session('Success'))
+        <div class="alert alert-success">{{ session('Success') }}</div>
+    @endif
+    @if (session('Error'))
+        <div class="alert alert-danger">{{ session('Error') }}</div>
+    @endif
+
     <a href="{{route('campaigns.create')}}" class="btn btn-primary mb-3">Create Campaign</a>
     <table class="table">
         <thead>
@@ -11,6 +19,7 @@
                 <th>Trackable Link (share this one)</th>
                 <th>Clicks</th>
                 <th>Credentials Captured</th>
+                <th>Send</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +36,18 @@
                     </td>
                     <td>{{$campaign->clickLogs->count()}}</td>
                     <td>{{$campaign->phishingLogs->count()}}</td>
+                    <td>
+                        @if ($campaign->target_email)
+                            <form action="{{ route('campaigns.send', $campaign) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-primary">
+                                    Send to {{ $campaign->target_email }}
+                                </button>
+                            </form>
+                        @else
+                            <span class="text-muted small">No recipient set</span>
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </tbody>
