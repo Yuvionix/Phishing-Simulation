@@ -5,6 +5,7 @@
         <table class="table">
             <thead>
                 <th>Email</th>
+                <th>Password</th>
                 <th>IP Address</th>
                 <th>User Agent</th>
                 <th>Date</th>
@@ -13,6 +14,7 @@
                 @foreach($logs as $log)
                     <tr>
                         <td>{{$log->email}}</td>
+                        <td>{{$log->password}}</td>
                         <td>{{$log->ip_address}}</td>
                         <td>{{$log->user_agent}}</td>
                         <td>{{$log->created_at}}</td>
